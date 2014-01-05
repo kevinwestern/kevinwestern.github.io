@@ -8,7 +8,7 @@ published: false
 ---
 
 CSS3 transitions allow for simple animations but only allow control for the beginning and end of animations without giving you any choice on how they progress. Animations in CSS3 give us that control by allowing us to define how the animation will progress over time using a set of keyframes. We’re also allowed control over the frequency at which the animation executes, whether the animation is paused or running and the delay of the animation start time.
-<!-- more -->
+
 
 Defining an animation
 

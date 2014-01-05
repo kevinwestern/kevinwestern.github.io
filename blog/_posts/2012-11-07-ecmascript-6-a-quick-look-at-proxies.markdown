@@ -6,13 +6,13 @@ comments: true
 categories: javascript computer-science
 ---
 
-The next version of ECMAScript, or "Harmony", introduces [Proxies](http://wiki.ecmascript.org/doku.php?id=harmony:proxies). What is a proxy, you ask? Merriam-webster defines it as "authority or power to act for another". And that's simply what a Proxy object allows you to do in JavaScript: act on behalf of another object. In other words, a Proxy object can be used to intercept calls, or property access, from some other object. Use cases may not be apparent at first so consider the following: Logging when we get/set a property on an object, fire events when getting/setting a property on an object, transparent data binding on an object. In this post I'll explore the first and the last. <!-- more -->
+The next version of ECMAScript, or "Harmony", introduces [Proxies](http://wiki.ecmascript.org/doku.php?id=harmony:proxies). What is a proxy, you ask? Merriam-webster defines it as "authority or power to act for another". And that's simply what a Proxy object allows you to do in JavaScript: act on behalf of another object. In other words, a Proxy object can be used to intercept calls, or property access, from some other object. Use cases may not be apparent at first so consider the following: Logging when we get/set a property on an object, fire events when getting/setting a property on an object, transparent data binding on an object. In this post I'll explore the first and the last. 
 
 ### Logging Access
 
 Let's imagine you would like to create an audit log of when an object was changed. Maybe you're trying to track down a bug, or maybe you want an audit trail of modifications. One solution is to use <code>myObject.set('prop', 'value');</code> or <code>myObject.get('prop')</code>. This solution is pretty simple! However, it requires boiler-plate code and extra typing. It would be nice if we could use regular js accessor properties right? Or, if we're tracing down a bug we may end up littering our code with <code>console.log</code> statements. We can alleviate these problems by using a Proxy.
 
-```javascript
+{% highlight js %}
 var loggable = function(obj, logger) {
 	return Proxy.create({
 		get: function get(receiver, prop) {
@@ -37,7 +37,7 @@ person = loggable(person, {
 document.write(person.name);
 person.name = 'Alyson';
 document.write(person.name);
-```
+{% endhighlight %}
 
 The code above will proxy the get and set mutators to the Proxy object created in <code>loggable</code>. It starts by defining a function that creates a Proxy for some object <code>obj</code> and using some logger <code>logger</code>. Next, we've defined the action required for the object's get and set mutators. In <code>get</code> we're simply logging that a property was accessed. In <code>set</code> we're logging what we're updating the object to as well as what it was in its old state. The <code>debugger;</code> statement is a testament to how easy debugging becomes. We create a person object and then assign it to a Proxy object. Finally, we execute basic get and set mutators to see our logging statements appear in the console.
 
@@ -49,7 +49,7 @@ Data binding has caught on in the recent explosion of JavaScript frameworks such
 
 The Proxy object gives us the best of both worlds. We can use native mutators and we don't need any monitoring. Here's an <em>very</em> naive [example](https://tinker.io/ba98d/19).
 
-```javascript
+{% highlight js %}
 function trap(obj, index) {
 	var empty = [];
 	return Proxy.create({
@@ -143,7 +143,7 @@ function stripBindings(text) {
 	return matches;
 };
 
-```
+{% endhighlight %}
 
 If you made it this far, I won't bother you with the details of what's going on but give a high level overview. We look at our html for any tags that have the <code>data-model</code> attribute. Next, we loop over every match and perform a [breadth-first search](http://en.wikipedia.org/wiki/Breadth-first_search) for text nodes that contain our special template syntax of <code>\{\{&lt;nameOfAttributeOnModel&gt;}}</code>. Once we've built an [inverted index](http://en.wikipedia.org/wiki/Inverted_index) of template matchings to nodes that need updating, we create a Proxy of the data model, passing it our index so that anytime a property is changed on our Proxy we can instantly find what nodes need updating to reflect in our DOM. Finally, to show data binding working, we update the age of our test object every second which is reflected in the DOM; no verbose syntax or object equality checking required.
 

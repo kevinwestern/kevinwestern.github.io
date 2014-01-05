@@ -8,7 +8,7 @@ categories: mysql database performance computer-science
 
 The only thing worse than discovering your application is crashing is having a customer tell you your application is crashing. Not too long ago I received panicked emails stating that, at some random intervals, our application was throwing 500s. Unfortunately I turned off push notifications (actually it has helped separate work/life - if it's an emergency you'll be getting a call) so I didn't receive these emails until the next morning when I sat down at my desk.
 
-My co-worker had already diagnosed the problem by the time I had arrived. <!-- more -->The recent changes we had pushed included a 1s ajax poll on a particular page which, in most polling cases, ended up hitting the database. Also, those changes were going live with a few thousand more users than the previous version. My co worker discovered that the database was the culprit, but why?
+My co-worker had already diagnosed the problem by the time I had arrived. The recent changes we had pushed included a 1s ajax poll on a particular page which, in most polling cases, ended up hitting the database. Also, those changes were going live with a few thousand more users than the previous version. My co worker discovered that the database was the culprit, but why?
 
 It turns out one of tables we were querying on didn't have an index set for a particular column. Coupled with the fact we added more users it was obvious why the database was choking: it had to perform a full table scan. The solution to the problem was easy, of course, we just needed to add the appropriate index.
 
@@ -25,7 +25,7 @@ I created the following test data:
 The first query was searching for a particular email address.
 
 
-``` mysql
+{% highlight mysql %}
 mysql> select count(*) from Users where email='test@test.com';
 +----------+
 | count(*) |
@@ -33,18 +33,18 @@ mysql> select count(*) from Users where email='test@test.com';
 |        0 |
 +----------+
 1 row in set (2.58 sec)
-```
+{% endhighlight %}
 
 That's pretty damn slow. How can we improve this? Let's add the constraint that email addresses will be unique. Next, we can add a unique index to our email column. Depending on your database engine you could define an index type (BTree or Hash). I decided to use the InnoDB engine which only supports a BTree index.
 
-``` mysql
+{% highlight mysql %}
 mysql> create unique index user_email_index on Users (email);
 Query OK, 0 rows affected (27.57 sec)
 Records: 0  Duplicates: 0  Warnings: 0
-```
+{% endhighlight %}
 With the index added let's see how much of an improvement that made:
 
-``` mysql
+{% highlight mysql %}
 mysql> select count(*) from Users where email='test@test.com';
 +----------+
 | count(*) |
@@ -52,7 +52,7 @@ mysql> select count(*) from Users where email='test@test.com';
 |        0 |
 +----------+
 1 row in set (0.00 sec)
-```
+{% endhighlight %}
 
 What a huge improvement! The query was so much faster it couldn't be measured in seconds, perhaps if we had measured in milliseconds we would have a non zero response time.
 
@@ -64,7 +64,7 @@ The query without the index had to perform a full table sequential scan, meaning
 
 Let's suppose I want to find all products bought by users who were born in 1994 without using an index.
 
-``` mysql
+{% highlight mysql %}
 mysql> select count(*) from Users u join Purchases p on u.Id = p.Id join Products pr on p.ProductId = pr.Id where u.Year = 1994;
 +----------+
 | count(*) |
@@ -72,11 +72,11 @@ mysql> select count(*) from Users u join Purchases p on u.Id = p.Id join Product
 |    15378 |
 +----------+
 1 row in set (3.04 sec)
-```
+{% endhighlight %}
 
 3.04 seconds - unacceptably slow.
 
-``` mysql
+{% highlight mysql %}
 mysql> create index users_year_index on Users (Year);
 Query OK, 0 rows affected (22.42 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -89,7 +89,7 @@ mysql> select count(*) from Users u join Purchases p on u.Id = p.Id join Product
 |    15378 |
 +----------+
 1 row in set (0.70 sec)
-```
+{% endhighlight %}
 
 A 434% improvement! I'm sure this query could be improved even more, but I had to head out after running this last query, so this is where I stopped.
 

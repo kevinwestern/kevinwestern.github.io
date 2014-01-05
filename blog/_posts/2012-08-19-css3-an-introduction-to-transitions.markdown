@@ -8,9 +8,9 @@ published: true
 ---
 
 Part of CSS3's features that have a lot of popularity behind them are its transitions, transformations and animations. We're no longer dependent on a JavaScript library providing basic animations; we can let the browser do the heavy lifting for us. In my experience, popular JS animations have been simple transitions. In this post I'll explore how to get started using CSS3's transitions.
-<!-- more -->
 
-<link href="{{ root_url }}/stylesheets/intro-to-transitions.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
 
 ## Transition
 
@@ -18,37 +18,22 @@ CSS3's transition property is known simply as "transition". However, because the
 
 ### Example
 
-``` css
+{% highlight css %}
 #example {
     width: 75px;
     height: 75px;
     background-color: black;
-
-    -moz-transition-property: all;
-    -o-transition-property: all;
-    -webkit-transition-property: all;
     transition-property: all;
-
-    -moz-transition-duration: 2s;
-    -o-transition-duration: 2s;
-    -webkit-transition-duration: 2s;
     transition-duration: 2s;
-
-    -moz-transition-timing-function: ease-in;
-    -o-transition-timing-function: ease-in;
-    -webkit-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
-
-    -moz-transition-delay: 0.5s;
-    -o-transition-delay: 0.5s;
-    -webkit-transition-delay: 0.5s;
     transition-delay: 0.5s
 }
 
 #example:hover {
     background-color: red
 }
-```
+{% endhighlight %}
+
 <div id='example'>
    Hover
 </div>
@@ -73,28 +58,24 @@ The fourth and final property we'll look at is the 'transition-delay' property. 
 ##### transition shorthand notation
 I've used the longhand notation for this example to allow for easy explanation. We can reduce the example to shorthand notation in the following format:
 
-```
+{% highlight html %}
 transition: <property> <duration> <timing-function> <delay> 
-```
+{% endhighlight %}
 
 Using this notation the example above would look like the following:
 
-``` css
+{% highlight css %}
 #example {
     width: 75px;
     height: 75px;
     background-color: black;
-
-    -moz-transition: all 2s ease-in-out 0.5s;
-    -o-transition: all 2s ease-in-out 0.5s;
-    -webkit-transition: all 2s ease-in-out 0.5s;
     transition: all 2s ease-in-out 0.5s
 }
 
 #example:hover {
    background-color: red;
 }
-```
+{% endhighlight %}
 Read more about [shorthand notation](http://www.w3.org/TR/css3-transitions/#transition-shorthand-property).
 
 CSS3 allows for simple and elegant transitions which otherwise would require extra JavaScript code and testing. With better browser adoption and even mobile adoption of CSS3 I'm excited to drop JS animation libraries.

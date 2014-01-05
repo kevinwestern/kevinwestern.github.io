@@ -8,6 +8,9 @@
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/css/app.css">
+        {% if page && page.css %}
+          <link rel='stylesheet' type='text/css' href="/css/{{ page.css }}.css" />
+        {% endif %}
 
     </head>
     <body>
