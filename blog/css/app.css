@@ -8133,11 +8133,10 @@ html, body {
 
 /* line 9, ../scss/app.scss */
 #container {
-  display: flex;
   height: 100%;
 }
 
-/* line 14, ../scss/app.scss */
+/* line 13, ../scss/app.scss */
 #navigation {
   background-color: #374a5c;
   color: white;
@@ -8149,32 +8148,32 @@ html, body {
   text-align: center;
   align-items: center;
 }
-/* line 25, ../scss/app.scss */
+/* line 24, ../scss/app.scss */
 #navigation ul {
   font-size: 24px;
   list-style: none;
   margin: 10px 0 0 0;
   width: 100%;
 }
-/* line 32, ../scss/app.scss */
+/* line 31, ../scss/app.scss */
 #navigation li {
   margin-bottom: 10px;
   width: 100%;
 }
-/* line 37, ../scss/app.scss */
+/* line 36, ../scss/app.scss */
 #navigation a {
   color: white;
   margin-left: 5px;
 }
 
-/* line 43, ../scss/app.scss */
+/* line 42, ../scss/app.scss */
 #content {
   height: 100%;
   width: 75%;
   padding: 0 20px;
 }
 
-/* line 49, ../scss/app.scss */
+/* line 48, ../scss/app.scss */
 .splash {
   align-items: center;
   display: flex;
@@ -8182,18 +8181,41 @@ html, body {
   text-align: center;
   height: 100%;
 }
-/* line 55, ../scss/app.scss */
+/* line 54, ../scss/app.scss */
 .splash h3 {
   font-size: 1.4rem;
 }
 
-/* line 61, ../scss/app.scss */
+/* line 60, ../scss/app.scss */
 #recent-posts .posts {
   list-style-type: none;
 }
 
-/* line 67, ../scss/app.scss */
+/* line 66, ../scss/app.scss */
 .contact a {
   color: inherit;
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 40em) {
+  /* line 73, ../scss/app.scss */
+  #navigation {
+    width: 100%;
+    height: 50px;
+  }
+  /* line 77, ../scss/app.scss */
+  #navigation li {
+    display: inline;
+  }
+
+  /* line 82, ../scss/app.scss */
+  #content {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 40.063em) {
+  /* line 88, ../scss/app.scss */
+  #container {
+    display: flex;
+  }
 }
