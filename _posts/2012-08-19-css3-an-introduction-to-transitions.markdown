@@ -5,6 +5,7 @@ date: 2012-08-19 10:01
 comments: true
 categories: [CSS3, CSS, webdev]
 published: true
+css: intro-to-transitions
 ---
 
 Part of CSS3's features that have a lot of popularity behind them are its transitions, transformations and animations. We're no longer dependent on a JavaScript library providing basic animations; we can let the browser do the heavy lifting for us. In my experience, popular JS animations have been simple transitions. In this post I'll explore how to get started using CSS3's transitions.
