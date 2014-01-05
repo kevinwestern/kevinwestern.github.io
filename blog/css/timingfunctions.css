@@ -1,0 +1,87 @@
+/* line 1, ../scss/timingfunctions.scss */
+.square {
+  width: 75px;
+  height: 75px;
+  background-color: black;
+  position: absolute;
+  left: 0;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  -webkit-transition-property: left;
+  transition-property: left;
+  -moz-transition-duration: 5s;
+  -o-transition-duration: 5s;
+  -webkit-transition-duration: 5s;
+  transition-duration: 5s;
+}
+
+/* line 17, ../scss/timingfunctions.scss */
+.container {
+  width: 450px;
+  height: 75px;
+  border: solid thin black;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* line 25, ../scss/timingfunctions.scss */
+.container:hover .square {
+  left: 375px;
+  background-color: red;
+}
+
+/* line 30, ../scss/timingfunctions.scss */
+#linear-transition {
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+
+/* line 37, ../scss/timingfunctions.scss */
+#ease-in-transition {
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+/* line 44, ../scss/timingfunctions.scss */
+#ease-out-transition {
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+/* line 51, ../scss/timingfunctions.scss */
+#ease-in-out-transition {
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+/* line 58, ../scss/timingfunctions.scss */
+#step-start-transition {
+  -moz-transition-timing-function: step-start;
+  -o-transition-timing-function: step-start;
+  -webkit-transition-timing-function: step-start;
+  transition-timing-function: step-start;
+}
+
+/* line 65, ../scss/timingfunctions.scss */
+#step-end-transition {
+  -moz-transition-timing-function: step-end;
+  -o-transition-timing-function: step-end;
+  -webkit-transition-timing-function: step-end;
+  transition-timing-function: step-end;
+}
+
+/* line 72, ../scss/timingfunctions.scss */
+#steps-transition {
+  -moz-transition-timing-function: steps(5, start);
+  -o-transition-timing-function: steps(5, start);
+  -webkit-transition-timing-function: steps(5, start);
+  transition-timing-function: steps(5, start);
+}
