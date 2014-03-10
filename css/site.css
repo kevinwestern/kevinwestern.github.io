@@ -1,0 +1,102 @@
+body {
+  background-color: #f6f6f6;
+  min-height: 100%;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 42px;  
+}
+
+h3 {
+  font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+}
+
+.nav {
+  background-color: #374a5c;
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav a {
+  color: white;
+  font-size: 22px;
+}
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.post {
+  text-align: left;
+}
+
+.contact a {
+  color: blue;
+}
+
+@media (min-width: 600px) {
+  .container {
+    display: flex;
+  }
+  .nav {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav ul, #recent-posts ul {
+    text-align: left;
+  }
+  .nav li {
+    display: block;
+    margin-bottom: .05em;
+  }
+  .splash, .content {
+    width: 75%;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav li {
+    margin-right: 10px;
+  }
+}
